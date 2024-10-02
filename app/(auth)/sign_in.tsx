@@ -1,9 +1,11 @@
 import CustomButton from '@/components/CustomButton';
 import InputField from '@/components/InputField';
 import OAuth from '@/components/OAuth';
+import { FIREBASE_AUTH } from '@/firebaseConfig';
 import { Link } from 'expo-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -11,7 +13,33 @@ const SignIn = () => {
     password: '',
   });
 
-  const onSignInPress = () => {};
+  const onSignInPress = async () => {
+    const { email, password } = form;
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill out all fields.');
+      return;
+    }
+    try {
+      const userCredentials = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
+      const user = userCredentials.user;
+
+      Alert.alert('Welcome,', `${user.displayName}`);
+    } catch (error: any) {
+      switch (error.code) {
+        case 'auth/user-not-found':
+          Alert.alert('Sign-In Error', 'No user found with this email.');
+          break;
+        case 'auth/wrong-password':
+          Alert.alert('Sign-In Error', 'Incorrect password.');
+          break;
+        case 'auth/invalid-email':
+          Alert.alert('Sign-In Error', 'Invalid email address.');
+          break;
+        default:
+          Alert.alert('Sign-In Error', error.message);
+      }
+    }
+  };
 
   return (
     <ScrollView className="flex-1 bg-white">

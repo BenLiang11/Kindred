@@ -1,9 +1,11 @@
 import CustomButton from '@/components/CustomButton';
 import InputField from '@/components/InputField';
 import OAuth from '@/components/OAuth';
+import { FIREBASE_AUTH } from '@/firebaseConfig';
 import { Link } from 'expo-router';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -12,7 +14,26 @@ const SignUp = () => {
     password: '',
   });
 
-  const onSignupPress = () => {};
+  const onSignupPress = async () => {
+    const { name, email, password } = form;
+
+    if (!name || !email || !password) {
+      Alert.alert('Error', 'Please fill out all fields.');
+      return;
+    }
+
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password);
+      const user = userCredentials.user;
+
+      await updateProfile(user, {
+        displayName: name,
+      });
+      Alert.alert('Success', 'Registration successful!');
+    } catch (error: any) {
+      Alert.alert('Registration Error', error.message);
+    }
+  };
 
   return (
     <ScrollView className="flex-1 bg-white">
