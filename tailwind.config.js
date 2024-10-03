@@ -90,6 +90,8 @@ module.exports = {
       fontFamily: {
         marko: ['Marko One', 'sans-serif'],
         crimson: ['Crimson Pro', 'serif'],
+        crimsonSemiBold: ['Crimson Pro SemiBold', 'serif'],
+        crimsonBold: ['Crimson Pro Bold', 'serif'],
         crimsonItalic: ['Crimson Pro Italic', 'serif'],
       },
     },

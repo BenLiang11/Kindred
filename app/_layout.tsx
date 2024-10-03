@@ -10,8 +10,10 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded] = useFonts({
     MarkoOne: require('../assets/fonts/MarkoOne-Regular.ttf'),
-    CrimsonPro: require('../assets/fonts/CrimsonPro-VariableFont_wght.ttf'),
-    CrimsonProItalic: require('../assets/fonts/CrimsonPro-Italic-VariableFont_wght.ttf'),
+    CrimsonPro: require('../assets/fonts/CrimsonPro-Regular.ttf'),
+    CrimsonProSemiBold: require('../assets/fonts/CrimsonPro-SemiBold.ttf'),
+    CrimsonProBold: require('../assets/fonts/CrimsonPro-Bold.ttf'),
+    CrimsonProItalic: require('../assets/fonts/CrimsonPro-Italic.ttf'),
   });
 
   useEffect(() => {
