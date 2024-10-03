@@ -69,9 +69,9 @@ const SignIn = () => {
 
           <OAuth />
 
-          <Link href="/sign_up" className="text-lg test-center text-general-200 mt-10">
-            <Text>Don't have an account? </Text>
-            <Text className="text-primary-500">Sign up</Text>
+          <Link href="/sign_up" className="text-lg test-center mt-6 mb-32 text-center">
+            <Text className="text-gray-500 font-crimson">Don't have an account? </Text>
+            <Text className="text-primary-500 font-crimson">Sign up</Text>
           </Link>
         </View>
         {/* Verification Modal */}

@@ -87,6 +87,11 @@ module.exports = {
           950: '#7A579D',
         },
       },
+      fontFamily: {
+        marko: ['Marko One', 'sans-serif'],
+        crimson: ['Crimson Pro', 'serif'],
+        crimsonItalic: ['Crimson Pro Italic', 'serif'],
+      },
     },
   },
   plugins: [],
