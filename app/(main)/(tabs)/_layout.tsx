@@ -7,7 +7,6 @@ import { View } from 'react-native';
 const Layout = () => {
   return (
     <Tabs
-      initialRouteName="index"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
